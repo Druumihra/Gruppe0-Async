@@ -49,24 +49,6 @@ static async void GetData()
 	}
 }
 
-public class WeatherData
-{
-	public string name { get; set; }
-    public List<Weather> weather { get; set; }
-    public Main main { get; set; }
-	public class Weather
-	{
-	    public string description { get; set; }
-	}
-	public class Main
-	{
-		public double temp { get; set; }
-	}
-};
-
-
-
-
 void CreateAlarm()
 {
 	lock(consoleWriteLock)
@@ -84,3 +66,19 @@ void CreateAlarm()
 
 	System.Console.Beep(800, 200);
 }
+
+public class WeatherData
+{
+	public string name { get; set; }
+    public List<Weather> weather { get; set; }
+    public Main main { get; set; }
+	public class Weather
+	{
+	    public string description { get; set; }
+	}
+	public class Main
+	{
+		public double temp { get; set; }
+	}
+}
+
