@@ -1,0 +1,15 @@
+C:\Users\teisb\Desktop\H2 OOP\Gruppe0-Async\Gamer\Gamer\bin\Debug\net7.0\Gamer.exe
+C:\Users\teisb\Desktop\H2 OOP\Gruppe0-Async\Gamer\Gamer\bin\Debug\net7.0\Gamer.deps.json
+C:\Users\teisb\Desktop\H2 OOP\Gruppe0-Async\Gamer\Gamer\bin\Debug\net7.0\Gamer.runtimeconfig.json
+C:\Users\teisb\Desktop\H2 OOP\Gruppe0-Async\Gamer\Gamer\bin\Debug\net7.0\Gamer.dll
+C:\Users\teisb\Desktop\H2 OOP\Gruppe0-Async\Gamer\Gamer\bin\Debug\net7.0\Gamer.pdb
+C:\Users\teisb\Desktop\H2 OOP\Gruppe0-Async\Gamer\Gamer\obj\Debug\net7.0\Gamer.csproj.AssemblyReference.cache
+C:\Users\teisb\Desktop\H2 OOP\Gruppe0-Async\Gamer\Gamer\obj\Debug\net7.0\Gamer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\teisb\Desktop\H2 OOP\Gruppe0-Async\Gamer\Gamer\obj\Debug\net7.0\Gamer.AssemblyInfoInputs.cache
+C:\Users\teisb\Desktop\H2 OOP\Gruppe0-Async\Gamer\Gamer\obj\Debug\net7.0\Gamer.AssemblyInfo.cs
+C:\Users\teisb\Desktop\H2 OOP\Gruppe0-Async\Gamer\Gamer\obj\Debug\net7.0\Gamer.csproj.CoreCompileInputs.cache
+C:\Users\teisb\Desktop\H2 OOP\Gruppe0-Async\Gamer\Gamer\obj\Debug\net7.0\Gamer.dll
+C:\Users\teisb\Desktop\H2 OOP\Gruppe0-Async\Gamer\Gamer\obj\Debug\net7.0\refint\Gamer.dll
+C:\Users\teisb\Desktop\H2 OOP\Gruppe0-Async\Gamer\Gamer\obj\Debug\net7.0\Gamer.pdb
+C:\Users\teisb\Desktop\H2 OOP\Gruppe0-Async\Gamer\Gamer\obj\Debug\net7.0\Gamer.genruntimeconfig.cache
+C:\Users\teisb\Desktop\H2 OOP\Gruppe0-Async\Gamer\Gamer\obj\Debug\net7.0\ref\Gamer.dll
