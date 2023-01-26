@@ -3,35 +3,40 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Drawing;
 
-var consoleWriteLock = new object();
-
 Console.Clear();
 
-Thread clockThread = new Thread(UpdateClock);
-clockThread.Start();
-Thread WeatherThread = new Thread(GetData);
-WeatherThread.Start();
-Thread alarmThread = new Thread(CreateAlarm);
-alarmThread.Start();
+var consoleWriteLock = new object();
 
-void UpdateClock()
+Task[] tasks = {
+	UpdateClock(),
+	GetData(),
+	CreateAlarm(),
+};
 
+Task.WaitAll(tasks);
+
+void Write(int x, int y, string text)
+{
+	lock(consoleWriteLock)
+	{
+		int oldX = Console.CursorLeft, oldY = Console.CursorTop;
+		Console.SetCursorPosition(x, y);
+		Console.Write(text);
+		Console.SetCursorPosition(oldX, oldY);
+	}
+}
+
+async Task UpdateClock()
 {
 	while (true)
 	{
-		lock(consoleWriteLock)
-		{
-			Console.SetCursorPosition(0, 0);
-			Console.WriteLine(DateTime.Now.ToString("HH:mm:ss"));
-			Console.SetCursorPosition(0, 3);
-		}
-
-		Thread.Sleep(1000);
+		Write(0, 0, DateTime.Now.ToString("HH:mm:ss"));
+		await Task.Delay(1000);
 	}
 };
 
 
-static async void GetData()
+async Task GetData()
 {
     using HttpClient client = new();
     client.DefaultRequestHeaders.Accept.Clear();
@@ -39,48 +44,43 @@ static async void GetData()
     while (true)
 	{
 		
-		var data =
-			await client.GetStringAsync("https://api.openweathermap.org/data/2.5/weather?lat=56.45&lon=9.39&appid=783c89b60e639f20a696fd9285eed4b7");
+		var data = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/weather?lat=56.45&lon=9.39&appid=783c89b60e639f20a696fd9285eed4b7");
 		var result = JsonSerializer.Deserialize<WeatherData>(data);
 
         var weather = result.weather[0];
-        Console.WriteLine($"{weather.description}, {result.main.temp}, {result.name}");
-	Thread.Sleep(60*1000);
+
+		Write(0, 1, $"{weather.description}, {result.main.temp}, {result.name}");
+
+		await Task.Delay(60 * 1000);
 	}
 }
 
-public class WeatherData
+async Task CreateAlarm()
 {
-	public string name { get; set; }
-    public List<Weather> weather { get; set; }
-    public Main main { get; set; }
-	public class Weather
-	{
-	    public string description { get; set; }
-	}
-	public class Main
-	{
-		public double temp { get; set; }
-	}
-};
-
-
-
-
-void CreateAlarm()
-{
-	lock(consoleWriteLock)
-	{
-		Console.SetCursorPosition(0, 2);
-		System.Console.WriteLine("enter the time you wish to set an alarm for as HH.mm e.g. 10.30");
-	}
+	Write(0, 2, "enter the time you wish to set an alarm for as HH:mm e.g. 10:30");
+	lock (consoleWriteLock) { Console.SetCursorPosition(0, 3); }
 
 	string alarm = System.Console.ReadLine();
 
 	while(alarm != DateTime.Now.ToString("HH:mm"))
 	{
-		Thread.Sleep(5000);
+		await Task.Delay(1000);
 	}
 
 	System.Console.Beep(800, 200);
+}
+
+public class WeatherData
+{
+	public string? name { get; set; }
+    public List<Weather>? weather { get; set; }
+    public Main? main { get; set; }
+	public class Weather
+	{
+	    public string? description { get; set; }
+	}
+	public class Main
+	{
+		public double? temp { get; set; }
+	}
 }
